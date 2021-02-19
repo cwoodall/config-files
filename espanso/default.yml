@@ -1,0 +1,190 @@
+# espanso configuration file
+
+# This is the default configuration file, change it as you like it
+# You can refer to the official documentation:
+# https://espanso.org/docs/
+
+# Matches are the substitution rules, when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Dates
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
+
+   # Breadcrumb
+  - trigger: ":bc"
+    word: true
+    replace: "<< {{yesterday}} | {{tomorrow}} >>"
+    vars:
+      - name: yesterday
+        type: shell
+        params:
+          cmd: "date --date=\"Yesterday\" \"+[[%Y-%m-%d]]\""
+      - name: tomorrow
+        type: shell
+        params:
+          cmd: "date --date=\"Tomorrow\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":0d"
+    word: true
+    replace: "{{Today}}"
+    vars:
+      - name: Today
+        type: shell
+        params:
+          cmd: "date --date=\"Today\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":<1d"
+    word: true
+    replace: "{{yesterday}}"
+    vars:
+      - name: yesterday
+        type: shell
+        params:
+          cmd: "date --date=\"Yesterday\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":>1d"
+    word: true
+    replace: "{{tomorrow}}"
+    vars:
+      - name: tomorrow
+        type: shell
+        params:
+          cmd: "date --date=\"Tomorrow\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":>mon"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date --date=\"next Monday\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":>tue"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output  
+        type: shell
+        params:
+          cmd: "date --date=\"next Tuesday\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":>wed"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date --date=\"next Wednesday\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":>thu"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date --date=\"next Thursday\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":>fri"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date --date=\"next Friday\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":>sat"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date --date=\"next Saturday\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":>sun"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date --date=\"next Sunday\" \"+[[%Y-%m-%d]]\""
+
+
+  - trigger: ":<mon"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date --date=\"last Monday\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":<tue"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output  
+        type: shell
+        params:
+          cmd: "date --date=\"last Tuesday\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":<wed"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date --date=\"last Wednesday\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":<thu"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date --date=\"last Thursday\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":<fri"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date --date=\"last Friday\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":<sat"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date --date=\"last Saturday\" \"+[[%Y-%m-%d]]\""
+  - trigger: ":<sun"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "date --date=\"last Sunday\" \"+[[%Y-%m-%d]]\""
+ 
+ # Shell commands
+  - trigger: ":shell"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo Hello from your shell"
+
+  - trigger: ":url" 
+    replace: "[{{title}}]()"
+    vars:
+      - name: "title"
+        type: "clipboard"
+
+  - trigger: ":rhi"
+    replace: "<mark style=\"background-color: #ff6961\">{{clipboard}}</mark>"
+    vars:
+      - name: "clipboard"
+        type: "clipboard"
