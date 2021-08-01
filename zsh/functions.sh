@@ -4,8 +4,8 @@ sws() {
 
     export workspace_name=""
     while [[ $(pwd) != $HOME ]]; do
-        if [[ -d ./.venv ]] then
-            . ./.venv/bin/activate
+        if [[ -d ./venv ]] then
+            . ./venv/bin/activate
             echo "Found .venv in $(pwd)"
             break
         fi
@@ -36,3 +36,4 @@ chws() {
     sws
 }
 
+alias fmt="./scripts/dev-build/scripts/format.sh"

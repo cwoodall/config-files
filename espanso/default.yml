@@ -167,7 +167,13 @@ matches:
         type: shell
         params:
           cmd: "date --date=\"last Sunday\" \"+[[%Y-%m-%d]]\""
+
+  - trigger: ":due"
+    replace: "📅"
  
+  - trigger: ":to"
+    replace: "👤" 
+
  # Shell commands
   - trigger: ":shell"
     replace: "{{output}}"
@@ -187,4 +193,10 @@ matches:
     replace: "<mark style=\"background-color: #ff6961\">{{clipboard}}</mark>"
     vars:
       - name: "clipboard"
+        type: "clipboard"
+  - trigger: ":emb"
+    replace: |
+        <embed src="{{link}}" autostart="false" height="300" width="100%"></embed>
+    vars:
+      - name: "link"
         type: "clipboard"
